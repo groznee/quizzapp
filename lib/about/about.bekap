@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:quizz_app/services/services.dart';
+
+import 'package:quizz_app/shared/bottom_nav.dart';
+import 'package:transparent_image/transparent_image.dart';
+
+class AboutScreen extends StatelessWidget {
+  const AboutScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final storageRef = FirebaseStorage.instance.ref();
+    final imageRef = storageRef.child("about.jpg");
+
+    Future<String> getImageUrl() async {
+      final url = await imageRef.getDownloadURL();
+      return url;
+    }
+
+    return Scaffold(
+      appBar: AppBar(),
+      // bottomNavigationBar: BottomNavBar(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Text(
+              "This app was made  for the purposes of learning Flutter, and to learn a bit about "
+              "the some of our art and civilization. Works presented were chosen according to my own "
+              "personal taste, so don't take it too seriously. Even though my taste is superior.",
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18, fontStyle: FontStyle.italic),
+            ),
+            FutureBuilder<String>(
+              future: getImageUrl(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text("Error fetching image");
+                } else if (snapshot.hasData) {
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height / 2,
+                    child: PhotoView(
+                      backgroundDecoration:
+                          BoxDecoration(color: Colors.transparent),
+                      imageProvider: NetworkImage(snapshot.data!),
+                    ),
+                  );
+                } else {
+                  return Text("No data available");
+                }
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -1,0 +1,63 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quizz_app/services/services.dart';
+import 'package:quizz_app/shared/shared.dart';
+import 'package:quizz_app/topics/drawer.dart';
+import 'package:quizz_app/topics/topic_item.dart';
+
+class TopicsScreen extends StatelessWidget {
+  const TopicsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<Topic>>(
+      future: FirestoreService().getTopics(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const LoadingScreen();
+        } else if (snapshot.hasError) {
+          return Center(
+            child: ErrorMessage(message: snapshot.error.toString()),
+          );
+        } else if (snapshot.hasData) {
+          var topics = snapshot.data!;
+
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Topics'),
+              actions: [
+                IconButton(
+                  icon: Icon(
+                    FontAwesomeIcons.circleUser,
+                    color: Theme.of(context).primaryColorDark,
+                  ),
+                  onPressed: () => Navigator.pushNamed(context, '/profile'),
+                )
+              ],
+            ),
+            drawer: ThemeDrawer(topics: topics),
+            body: Container(
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/background1.jpg"),
+                  fit: BoxFit.cover, // You can adjust the fitting of the image.
+                ),
+              ),
+              child: GridView.count(
+                primary: true,
+                padding: const EdgeInsets.all(10.0),
+                crossAxisSpacing: 5.0,
+                crossAxisCount: 2,
+                children:
+                    topics.map((topic) => TopicItem(topic: topic)).toList(),
+              ),
+            ),
+            bottomNavigationBar: const BottomNavBar(),
+          );
+        } else {
+          return const Text('No topics found in Firestore. Check database');
+        }
+      },
+    );
+  }
+}
