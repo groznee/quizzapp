@@ -36,10 +36,11 @@ class _TopicsScreenState extends State<TopicsScreen> {
             EdgeInsets itemPaddingio =
                 const EdgeInsets.fromLTRB(25, 20, 25, 10);
             if (aspectRatio > 0.626) {
-              itemPaddingio -= const EdgeInsets.only(top: 10);
-              itemPaddingio *= 3.5 / aspectRatio;
+              itemPaddingio -= const EdgeInsets.fromLTRB(-10, 5, -10, 5);
+              itemPaddingio *= 12 * (aspectRatio * aspectRatio * aspectRatio);
               itemExtentio *= 0.75 / aspectRatio;
             }
+
             return Scaffold(
               appBar: AppBar(
                 title: const Text('Topics'),
@@ -60,8 +61,10 @@ class _TopicsScreenState extends State<TopicsScreen> {
               body: Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: const AssetImage("assets/background1.jpg"),
+                    image: const AssetImage("assets/background3.jpg"),
+                    alignment: const FractionalOffset(1, 0), //topRight
                     fit: BoxFit.cover,
+
                     colorFilter: ColorFilter.mode(
                         Theme.of(context).primaryColor.withOpacity(0.75),
                         BlendMode.color),
@@ -77,7 +80,6 @@ class _TopicsScreenState extends State<TopicsScreen> {
                               (orientation != Orientation.landscape))
                           ? ListView(
                               itemExtent: itemExtentio,
-                              // padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
                               padding: itemPaddingio,
                               children: topics
                                   .map((topic) => Padding(

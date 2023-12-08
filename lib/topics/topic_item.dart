@@ -103,7 +103,7 @@ class LandscapeQuizList extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: const AssetImage("assets/background4.jpg"),
+          image: const AssetImage("assets/background1.jpg"),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
               Theme.of(context).primaryColor.withOpacity(0.75),
@@ -152,7 +152,7 @@ class PortraitQuizList extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: const AssetImage("assets/background4.jpg"),
+          image: const AssetImage("assets/background1.jpg"),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
               Theme.of(context).primaryColor.withOpacity(0.75),

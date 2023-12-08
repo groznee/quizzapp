@@ -4,23 +4,23 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 var themeDefault = FlexColorScheme.dark(
-  scheme: FlexScheme.blue,
+  scheme: FlexScheme.bigStone,
   fontFamily: GoogleFonts.poppins().fontFamily,
 ).toTheme;
 var themeBlue = FlexColorScheme.dark(
-  scheme: FlexScheme.amber,
+  scheme: FlexScheme.blue,
   fontFamily: GoogleFonts.openSans().fontFamily,
 ).toTheme;
 var themeRed = FlexColorScheme.dark(
-  scheme: FlexScheme.red,
+  scheme: FlexScheme.tealM3,
   fontFamily: GoogleFonts.montserrat().fontFamily,
 ).toTheme;
 var themeGreen = FlexColorScheme.dark(
-  scheme: FlexScheme.green,
+  scheme: FlexScheme.amber,
   fontFamily: GoogleFonts.lato().fontFamily,
 ).toTheme;
 var themeAmber = FlexColorScheme.dark(
-  scheme: FlexScheme.indigo,
+  scheme: FlexScheme.redWine,
   fontFamily: GoogleFonts.roboto().fontFamily,
 ).toTheme;
 
