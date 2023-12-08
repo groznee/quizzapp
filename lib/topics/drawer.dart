@@ -30,7 +30,7 @@ class ThemeDrawer extends StatelessWidget {
                 ElevatedButton(
                     onPressed: () =>
                         HomeMaterialWidget.of(context).changeTheme(themeBlue),
-                    child: const Text("Blue Theme")),
+                    child: const Text("Amber Theme")),
                 ElevatedButton(
                     onPressed: () =>
                         HomeMaterialWidget.of(context).changeTheme(themeRed),
@@ -42,7 +42,7 @@ class ThemeDrawer extends StatelessWidget {
                 ElevatedButton(
                     onPressed: () =>
                         HomeMaterialWidget.of(context).changeTheme(themeAmber),
-                    child: const Text("Amber Theme")),
+                    child: const Text("Indigo Theme")),
               ],
             ),
           ),

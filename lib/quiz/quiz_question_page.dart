@@ -155,7 +155,7 @@ class QuestionPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(question.text, overflow: TextOverflow.fade),
+              DynamicTextScaleWidget(text: question.text),
               Container(
                 padding:
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
@@ -273,7 +273,7 @@ class QuestionPage extends StatelessWidget {
                 const SizedBox(height: 16), //could wrap Text in padding as well
                 Expanded(
                   flex: 1,
-                  child: Text(question.text, overflow: TextOverflow.fade),
+                  child: DynamicTextScaleWidget(text: question.text),
                 ),
               ],
             ),
@@ -367,5 +367,29 @@ class QuestionPage extends StatelessWidget {
         );
       },
     );
+  }
+}
+
+class DynamicTextScaleWidget extends StatelessWidget {
+  const DynamicTextScaleWidget({
+    super.key,
+    required this.text,
+  });
+
+  final String text;
+
+  double calculateScaler() {
+    if (text.length > 175) {
+      return (1.2 * (175 / text.length)).clamp(1, 1.2);
+    } else {
+      return 1.2;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(text,
+        textScaler: TextScaler.linear(calculateScaler()),
+        overflow: TextOverflow.fade);
   }
 }

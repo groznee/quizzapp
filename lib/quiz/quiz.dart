@@ -88,7 +88,7 @@ class StartPage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: const AssetImage("assets/background4.jpg"),
+          image: const AssetImage("assets/background3.jpg"),
           fit: BoxFit.cover,
           colorFilter: ColorFilter.mode(
               Theme.of(context).primaryColor.withOpacity(0.75),
@@ -100,22 +100,29 @@ class StartPage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(quiz.title, style: Theme.of(context).textTheme.headlineMedium),
-          const Divider(height: 50),
+          const Divider(),
           Expanded(
-              child: Text(
-            quiz.description,
-            style: Theme.of(context).textTheme.headlineSmall,
-          )),
-          ButtonBar(
-            alignment: MainAxisAlignment.center,
-            children: <Widget>[
-              ElevatedButton.icon(
-                onPressed: state.nextPage,
-                label: const Text('Start Quiz!'),
-                icon: const Icon(Icons.start),
-              )
-            ],
-          )
+            flex: 6,
+            child: Text(
+              quiz.description,
+              style: Theme.of(context).textTheme.headlineSmall,
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: ElevatedButton.icon(
+              onPressed: state.nextPage,
+              label: const Text(
+                'Start Quiz!',
+                textScaler: TextScaler.linear(2),
+              ),
+              icon: const Icon(
+                Icons.start,
+                size: 48,
+              ),
+            ),
+          ),
+          const Expanded(flex: 3, child: Divider()),
         ],
       ),
     );

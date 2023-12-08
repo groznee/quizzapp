@@ -64,7 +64,7 @@ class LandscapeProfile extends StatelessWidget {
             Container(
               width: 200,
               height: 200,
-              margin: EdgeInsets.only(bottom: 25),
+              margin: const EdgeInsets.only(bottom: 25),
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 image:

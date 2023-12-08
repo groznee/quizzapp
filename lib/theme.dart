@@ -4,11 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 
 var themeDefault = FlexColorScheme.dark(
-  scheme: FlexScheme.bigStone,
+  scheme: FlexScheme.blue,
   fontFamily: GoogleFonts.poppins().fontFamily,
 ).toTheme;
 var themeBlue = FlexColorScheme.dark(
-  scheme: FlexScheme.blue,
+  scheme: FlexScheme.amber,
   fontFamily: GoogleFonts.openSans().fontFamily,
 ).toTheme;
 var themeRed = FlexColorScheme.dark(
@@ -20,7 +20,7 @@ var themeGreen = FlexColorScheme.dark(
   fontFamily: GoogleFonts.lato().fontFamily,
 ).toTheme;
 var themeAmber = FlexColorScheme.dark(
-  scheme: FlexScheme.amber,
+  scheme: FlexScheme.indigo,
   fontFamily: GoogleFonts.roboto().fontFamily,
 ).toTheme;
 

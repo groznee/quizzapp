@@ -29,6 +29,17 @@ class _TopicsScreenState extends State<TopicsScreen> {
           var topics = snapshot.data!;
 
           return OrientationBuilder(builder: (context, orientation) {
+            //there are some visual bugs present with wider screens in portrait
+            //mode, for which this is a hacky maths fix
+            double aspectRatio = MediaQuery.of(context).size.aspectRatio;
+            double itemExtentio = MediaQuery.of(context).size.height / 3;
+            EdgeInsets itemPaddingio =
+                const EdgeInsets.fromLTRB(25, 20, 25, 10);
+            if (aspectRatio > 0.626) {
+              itemPaddingio -= const EdgeInsets.only(top: 10);
+              itemPaddingio *= 3.5 / aspectRatio;
+              itemExtentio *= 0.75 / aspectRatio;
+            }
             return Scaffold(
               appBar: AppBar(
                 title: const Text('Topics'),
@@ -65,10 +76,9 @@ class _TopicsScreenState extends State<TopicsScreen> {
                       child: (wantListView &&
                               (orientation != Orientation.landscape))
                           ? ListView(
-                              itemExtent:
-                                  MediaQuery.of(context).size.height / 3,
-                              padding:
-                                  const EdgeInsets.fromLTRB(25, 20, 25, 15),
+                              itemExtent: itemExtentio,
+                              // padding: const EdgeInsets.fromLTRB(25, 20, 25, 10),
+                              padding: itemPaddingio,
                               children: topics
                                   .map((topic) => Padding(
                                         padding:
