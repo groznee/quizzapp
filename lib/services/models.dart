@@ -59,7 +59,7 @@ class Topic {
       {this.id = '',
       this.title = '',
       this.description = '',
-      this.img = 'default.png',
+      this.img = '',
       this.quizzes = const []});
 
   factory Topic.fromJson(Map<String, dynamic> json) => _$TopicFromJson(json);

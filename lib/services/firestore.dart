@@ -14,7 +14,7 @@ class FirestoreService {
     ref.delete();
   }
 
-  /// Reads all documments from the topics collection
+  /// Reads all documents from the topics collection
   Future<List<Topic>> getTopics() async {
     var ref = _db.collection('topics');
     var snapshot = await ref.get();

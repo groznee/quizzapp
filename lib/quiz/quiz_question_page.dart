@@ -379,8 +379,8 @@ class DynamicTextScaleWidget extends StatelessWidget {
   final String text;
 
   double calculateScaler() {
-    if (text.length > 175) {
-      return (1.2 * (175 / text.length)).clamp(1, 1.2);
+    if (text.length > 160) {
+      return (1.2 * (160 / text.length)).clamp(1, 1.2);
     } else {
       return 1.2;
     }
@@ -390,6 +390,6 @@ class DynamicTextScaleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(text,
         textScaler: TextScaler.linear(calculateScaler()),
-        overflow: TextOverflow.fade);
+        overflow: TextOverflow.visible);
   }
 }
